@@ -9,10 +9,10 @@ import com.example.counrylist.databinding.CountryItemBinding
 import com.example.counrylist.ui.model.CountryItem
 
 internal class CountriesListItemAdapterDelegate :
-    ListItemAdapterDelegate<CountryItem, DisplayableItem, CountriesListItemAdapterDelegate.CountriesViewHolder>() {
+    ListItemAdapterDelegate<CountryItem, DisplayableItem, CountriesListItemAdapterDelegate.CountryViewHolder>() {
 
 
-    inner class CountriesViewHolder(private val binding: CountryItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class CountryViewHolder(private val binding: CountryItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(country: CountryItem) {
             with(binding) {
                 countryImage.setImageResource(country.flagResId)
@@ -26,14 +26,14 @@ internal class CountriesListItemAdapterDelegate :
         return item is CountryItem
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup): CountriesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup): CountryViewHolder {
         val binding = CountryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CountriesViewHolder(binding)
+        return CountryViewHolder(binding)
     }
 
     override fun onBindViewHolder(
         item: CountryItem,
-        holder: CountriesViewHolder
+        holder: CountryViewHolder
     ) {
         holder.bind(item)
     }

@@ -21,6 +21,10 @@ abstract class DelegationAdapter<T>(private val callback: ItemCallback<T>,
         return delegatesManager.onBindViewHolder(differ.currentList, position, holder)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return delegatesManager.getItemViewType(differ.currentList, position)
+    }
+
     override fun getItemCount(): Int {
         return differ.currentList.size
     }

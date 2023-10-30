@@ -20,6 +20,16 @@ class AdapterDelegatesManager<T>(vararg delegates: AdapterDelegate<T>) {
         delegates.put(viewType, delegate)
     }
 
+    fun getItemViewType(items: List<T>, position: Int):Int {
+        for (i in 0 until delegates.size()) {
+            val delegate = delegates.valueAt(i)
+            if (delegate.isForViewType(items, position)) {
+                return delegates.keyAt(i)
+            }
+        }
+        throw NullPointerException("No Delegates for item at this position")
+    }
+
     fun onCreateViewHolder(parent: ViewGroup, viewType:Int): ViewHolder {
         val delegate: AdapterDelegate<T> = delegates[viewType] ?: throw NullPointerException("No AdapterDelegates for this viewType")
 
